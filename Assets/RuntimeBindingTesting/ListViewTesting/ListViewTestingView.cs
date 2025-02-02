@@ -21,7 +21,18 @@ namespace RuntimeBindingTesting.ListViewTesting
         {
             _listView = _uiDocument.rootVisualElement.Q<ListView>();
             _listView.dataSource = _viewModel;
-            _listView.bindItem += (element, index) => { element.Q<Label>().text = _viewModel.DataList[index].Label; };
+            _listView.bindItem += (element, index) =>
+            {
+                var label = element.Q<Label>();
+                label.dataSource = _viewModel.DataList[index];
+                label.SetBinding(
+                    bindingId: nameof(Label.text),
+                    binding: new DataBinding()
+                    {
+                        dataSourcePath = PropertyPath.FromName(nameof(ListViewTestingViewModel.Data.Label))
+                    }
+                );
+            };
             _listView.itemTemplate = templateAsset;
 
             _listView.SetBinding(
