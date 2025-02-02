@@ -1,0 +1,8 @@
+/*
+!/.gitignore
+!/Assets
+!/global.json
+!/Packages
+!/ProjectSettings
+!/README.md
+.DS_Store
