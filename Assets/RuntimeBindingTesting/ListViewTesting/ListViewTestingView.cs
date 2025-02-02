@@ -23,8 +23,8 @@ namespace RuntimeBindingTesting.ListViewTesting
             _listView.dataSource = _viewModel;
             _listView.bindItem += (element, index) =>
             {
+                element.dataSource =_viewModel.DataList[index];
                 var label = element.Q<Label>();
-                label.dataSource = _viewModel.DataList[index];
                 label.SetBinding(
                     bindingId: nameof(Label.text),
                     binding: new DataBinding()
